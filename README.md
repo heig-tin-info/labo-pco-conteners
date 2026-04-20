@@ -25,12 +25,11 @@ Docker offre en plus une grande flexibilité de gestion et de création d'images
 
 Tout développeur utilise Docker au quotidien pour créer des environnements de développement, tester des applications dans des environnements isolés, et déployer des applications en production.
 
-> [!NOTE]
-> **Questions de réflexion**
->
-> - Quelle est la différence entre un conteneur et un simple processus Linux ?
-> - Pourquoi dit-on qu'un conteneur est plus léger qu'une machine virtuelle ?
-> - Donnez un exemple concret où l'isolation offerte par Docker est utile en développement.
+!!! question
+
+    1. Quelle est la différence entre un conteneur et un simple processus Linux ?
+    2. Pourquoi dit-on qu'un conteneur est plus léger qu'une machine virtuelle ?
+    3. Donnez un exemple concret où l'isolation offerte par Docker est utile en développement.
 
 ## Isoler, le maître mot de la conteneurisation
 

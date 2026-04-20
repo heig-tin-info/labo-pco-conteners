@@ -1,0 +1,7 @@
+language: fr
+author: Yves Chevallier
+subtitle: Linux et la conteneurisation
+paragraph:
+    indent: false
+callouts:
+    style: minimal
