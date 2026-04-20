@@ -1,0 +1,261 @@
+%%
+%% This is file `heiglogo.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% heiglogo.dtx  (with options: `package')
+%%   This is the generated file for the heiglogo package.
+%%   License: LPPL 1.3c or later.
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{heiglogo}[2025/09/30 v1.0 HEIG-VD Logo with options]
+\RequirePackage{iftex}
+\ifPDFTeX
+  \PackageError{heiglogo}{
+    This package requires XeLaTeX or LuaLaTeX}{Use xelatex or lualatex.}
+\fi
+\RequirePackage{expl3} % tu utilises l3keys
+\RequirePackage{xparse}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{fontspec}
+
+\newfontfamily\heiglogoFont{TeX Gyre Heros}[
+    BoldFont = * Bold,
+    UprightFont = * ,
+    NFSSFamily = heiglogo,
+]
+
+\definecolor{heiglogo@red}{HTML}{e1251b}
+
+\newcommand\heiglogo@curcolor{black}
+\newcommand\heiglogo@height{1.8cm}
+\newcommand\heiglogo@left{10mm}
+\newcommand\heiglogo@right{-1pt} % undefined
+\newcommand\heiglogo@top{10mm}
+\newcommand\heiglogo@textwidth{3cm}
+\newif\ifheiglogo@hastexttitle
+\newif\ifheiglogo@hastextsubtitle
+\newcommand\heiglogo@txt{}
+\newcommand\heiglogo@subtitle{}
+
+\newcommand\heiglogo@draw[2]{%
+    \begin{tikzpicture}[x=0.7pt,y=0.7pt,scale=\heiglogo@scale,inner sep=0,outer sep=0]
+        \fill[\heiglogo@curcolor]
+        (74,18)--(56,18)--(56,12)--(68,12)--(68,12)
+        ..controls(67,7)and(63,5)..(57,5)
+        ..controls(50,5)and(45,10)..(45,17)
+        ..controls(45,24)and(50,30)..(57,30)
+        ..controls(63,30)and(67,27)..(69,23)
+        --(74,25)..controls(71,32)and(65,35)..(57,35)
+        ..controls(47,35)and(39,27)..(39,17)
+        ..controls(39,7)and(47,0)..(57,0)
+        ..controls(62,0)and(66,2)..(69,5)
+        --(69,1)--(74,1)--(74,17)--cycle;
+        \fill[\heiglogo@curcolor]
+        (74,47)--(46,47)--(46,56)--(70,56)--(70,61)
+        --(46,61)--(46,70)--(74,70)--(74,75)
+        --(40,75)--(40,42)--(74,42)--cycle;
+        \fill[\heiglogo@curcolor]
+        (27,61)--(5,61)--(5,75)--(0,75)--(0,42)
+        --(5,42)--(5,56)--(27,56)--(27,42)
+        --(33,42)--(33,75)--(27,75)--cycle;
+        \fill[\heiglogo@curcolor]
+        (19,6)--(19,29)--(33,29)--(33,34)
+        --(0,34)--(0,29)--(13,29)--(13,6)
+        --(0,6)--(0,1)--(33,1)--(33,6)--cycle;
+        \fill[\heiglogo@curcolor]
+        (88,75)--(90,75)--(87,65)--(85,65)
+        --(81,75)--(83,75)--(86,68)--cycle;
+        \fill[\heiglogo@curcolor]
+        (92,65)--(92,75)--(95,75)
+        ..controls(98,75)and(100,73)..(100,70)
+        ..controls(100,67)and(98,65)..(95,65)--cycle;
+        \fill[white]
+        (95,67)..controls(97,67)and(98,68)..(98,70)
+        ..controls(98,72)and(97,73)..(95,73)
+        --(94,73)--(94,67)--cycle;
+
+        \ifheiglogo@hastexttitle
+            \fill[\heiglogo@curcolor]
+            (115,1)--(114,1)--(114,75)--(115,75)--cycle;
+        \else
+            \ifheiglogo@hastextsubtitle
+                \fill[\heiglogo@curcolor]
+                (115,1)--(114,1)--(114,75)--(115,75)--cycle;
+            \fi
+        \fi
+
+        \ifheiglogo@hastexttitle
+        \node[anchor=north west,inner sep=0,outer sep=0] at (125,75)
+        {%
+            \begingroup
+            \color{\heiglogo@curcolor}\heiglogoFont\bfseries
+            \setlength{\parskip}{0pt}%
+            \lineskiplimit=0pt\lineskip=0pt%
+            % impose 5 lignes pile sur la hauteur du logo:
+            \fontsize{\heiglogo@title@size}{\heiglogo@title@baseline}\selectfont
+            \parbox[t][\heiglogo@height][t]{\heiglogo@textwidth}{%
+                \raggedright\MakeUppercase{#1}%
+            }%
+            \endgroup
+        };
+        \fi
+        \ifheiglogo@hastextsubtitle
+        \node[anchor=south west,inner sep=0,outer sep=0] at (125,2)
+        {%
+            \begingroup
+            \color{\heiglogo@curcolor}\heiglogoFont
+            \setlength{\parskip}{0pt}%
+            \lineskiplimit=0pt\lineskip=0pt%
+            \fontsize{\heiglogo@title@size}{\heiglogo@title@baseline}\selectfont
+            \parbox[b][\heiglogo@height][b]{\heiglogo@textwidth}{%
+                \raggedright #2%
+            }%
+            \endgroup
+        };
+        \fi
+    \end{tikzpicture}%
+}
+
+\newcommand\heiglogo@relative[2]{%
+    \begingroup
+    \pgfmathsetmacro{\heiglogo@scale}{\heiglogo@height/52.5pt}%
+    \heiglogo@draw{#1}{#2}%
+    \endgroup
+}
+
+\newcommand\heiglogo@absolute[2]{%
+    \begin{tikzpicture}[remember picture,overlay,inner sep=0,outer sep=0,baseline]
+        \begingroup
+        \pgfmathsetmacro{\heiglogo@scale}{\heiglogo@height/52.5pt}%
+        \ifdim\heiglogo@right>-1pt
+            \node[anchor=north east,inner sep=0,outer sep=0] at
+            ([xshift=-\heiglogo@right,yshift=-\heiglogo@top] current page.north east)
+            {\heiglogo@draw{#1}{#2}};
+        \else
+            \node[anchor=north west,inner sep=0,outer sep=0] at
+            ([xshift=\heiglogo@left,yshift=-\heiglogo@top] current page.north west)
+            {\heiglogo@draw{#1}{#2}};
+        \fi
+        \endgroup
+    \end{tikzpicture}%
+    \vspace*{-\baselineskip}%
+}
+
+\ExplSyntaxOn
+
+\dim_new:N  \l_heiglogo_height_dim
+\dim_new:N  \l_heiglogo_left_dim
+\dim_new:N  \l_heiglogo_right_dim
+\dim_new:N  \l_heiglogo_top_dim
+\dim_new:N  \l_heiglogo_textwidth_dim
+\bool_new:N \l_heiglogo_relative_bool
+\bool_new:N \l_heiglogo_color_bool
+\int_new:N \l_heiglogo_lines_int
+\dim_new:N \l_heiglogo_title_baseline_dim
+\dim_new:N \l_heiglogo_title_size_dim
+
+\dim_new:N  \g_heiglogo_def_height_dim
+\dim_new:N  \g_heiglogo_def_left_dim
+\dim_new:N  \g_heiglogo_def_right_dim
+\dim_new:N  \g_heiglogo_def_top_dim
+\dim_new:N  \g_heiglogo_def_textwidth_dim
+\bool_new:N \g_heiglogo_def_relative_bool
+\bool_new:N \g_heiglogo_def_color_bool
+\int_new:N \g_heiglogo_def_lines_int
+
+\dim_gset:Nn  \g_heiglogo_def_height_dim    { 1.8cm }
+\dim_gset:Nn  \g_heiglogo_def_left_dim      { 10mm }
+\dim_gset:Nn  \g_heiglogo_def_right_dim     { -1pt } % -1pt => indéfini
+\dim_gset:Nn  \g_heiglogo_def_top_dim       { 10mm }
+\dim_gset:Nn  \g_heiglogo_def_textwidth_dim { 3cm }
+\bool_gset_false:N \g_heiglogo_def_relative_bool
+\bool_gset_false:N \g_heiglogo_def_color_bool
+\int_gset:Nn \g_heiglogo_def_lines_int { 5 }
+
+\keys_define:nn { heiglogo }
+{
+    height    .dim_set:N = \l_heiglogo_height_dim,
+    left      .dim_set:N = \l_heiglogo_left_dim,
+    right     .dim_set:N = \l_heiglogo_right_dim,
+    top       .dim_set:N = \l_heiglogo_top_dim,
+    relative  .bool_set:N = \l_heiglogo_relative_bool,
+    color     .bool_set:N = \l_heiglogo_color_bool,
+    textwidth .dim_set:N  = \l_heiglogo_textwidth_dim,
+    lines     .int_set:N  = \l_heiglogo_lines_int,
+}
+
+\NewDocumentCommand \heiglogoSetup { m }
+{
+    \keys_set:nn { heiglogo / setup } {#1}
+}
+\keys_define:nn { heiglogo / setup }
+{
+    height    .dim_set:N = \g_heiglogo_def_height_dim,
+    left      .dim_set:N = \g_heiglogo_def_left_dim,
+    right     .dim_set:N = \g_heiglogo_def_right_dim,
+    top       .dim_set:N = \g_heiglogo_def_top_dim,
+    relative  .bool_set:N = \g_heiglogo_def_relative_bool,
+    color     .bool_set:N = \g_heiglogo_def_color_bool,
+    textwidth .dim_set:N  = \g_heiglogo_def_textwidth_dim,
+    lines     .int_set:N  = \g_heiglogo_def_lines_int,
+}
+
+\NewDocumentCommand{\logo}{ O{} g g }
+{
+    \group_begin:
+    % 1. Reset defaults
+    \dim_set_eq:NN  \l_heiglogo_height_dim    \g_heiglogo_def_height_dim
+    \dim_set_eq:NN  \l_heiglogo_left_dim      \g_heiglogo_def_left_dim
+    \dim_set_eq:NN  \l_heiglogo_right_dim     \g_heiglogo_def_right_dim
+    \dim_set_eq:NN  \l_heiglogo_top_dim       \g_heiglogo_def_top_dim
+    \dim_set_eq:NN  \l_heiglogo_textwidth_dim \g_heiglogo_def_textwidth_dim
+    \bool_set_eq:NN \l_heiglogo_relative_bool \g_heiglogo_def_relative_bool
+    \bool_set_eq:NN \l_heiglogo_color_bool    \g_heiglogo_def_color_bool
+    \int_set_eq:NN  \l_heiglogo_lines_int     \g_heiglogo_def_lines_int
+
+    % 2. Current call options
+    \keys_set:nn { heiglogo } {#1}
+
+    % 3. Pass to TikZ macros
+    \bool_if:NTF \l_heiglogo_color_bool
+    { \def\heiglogo@curcolor{heiglogo@red} }
+    { \def\heiglogo@curcolor{black} }
+    \edef\heiglogo@height   {\the\l_heiglogo_height_dim}
+    \edef\heiglogo@left     {\the\l_heiglogo_left_dim}
+    \edef\heiglogo@right    {\the\l_heiglogo_right_dim}
+    \edef\heiglogo@top      {\the\l_heiglogo_top_dim}
+    \edef\heiglogo@textwidth{\the\l_heiglogo_textwidth_dim}
+
+    \dim_set:Nn \l_heiglogo_title_baseline_dim
+    { (\l_heiglogo_height_dim + 0.1cm) / \l_heiglogo_lines_int }
+    \dim_set:Nn \l_heiglogo_title_size_dim
+    {
+        \fp_to_dim:n
+        { \dim_to_fp:n { \l_heiglogo_title_baseline_dim } / 1.2 }
+    }
+
+    % on exporte en macros "écrites" pour \fontsize
+    \edef\heiglogo@title@baseline{\the\l_heiglogo_title_baseline_dim}
+    \edef\heiglogo@title@size{\the\l_heiglogo_title_size_dim}
+
+    % 4) Optional text
+    \IfNoValueTF{#2}
+  { \heiglogo@hastexttitlefalse \def\heiglogo@txt{} }
+  { \heiglogo@hastexttitletrue  \def\heiglogo@txt{#2} }
+
+    \IfNoValueTF{#3}
+  { \heiglogo@hastextsubtitlefalse \def\heiglogo@subtitle{} }
+  { \heiglogo@hastextsubtitletrue  \def\heiglogo@subtitle{#3} }
+
+    % 5. Relative or absolute placement
+    \bool_if:NTF \l_heiglogo_relative_bool
+    { \heiglogo@relative{\heiglogo@txt}{\heiglogo@subtitle} }
+    { \heiglogo@absolute{\heiglogo@txt}{\heiglogo@subtitle} }
+    \group_end:
+}
+\ExplSyntaxOff
+\endinput
+%%
+%% End of file `heiglogo.sty'.

@@ -5,3 +5,18 @@ paragraph:
     indent: false
 callouts:
     style: minimal
+fragments:
+  - ts-geometry
+  - ts-typesetting
+  - ts-fonts
+  - ts-extra
+  - ts-keystrokes
+  - ts-callouts
+  - ts-code
+  - ts-glossary
+  - ts-index
+  - ts-bibliography
+  - ts-todolist
+  - ./fragments/heiglogo
+heiglogo:
+  color: false

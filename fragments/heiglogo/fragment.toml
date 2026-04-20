@@ -1,0 +1,18 @@
+name = "ts-heiglogo"
+description = "Logo HEIG-VD sur la première page, en haut à gauche, à 1cm des bords."
+
+[[files]]
+path = "heiglogo.sty"
+type = "package"
+output = "heiglogo"
+
+[[files]]
+path = "ts-heiglogo.jinja.tex"
+type = "inline"
+slot = "extra_packages"
+
+[attributes.heiglogo_color]
+default = false
+type = "boolean"
+sources = ["heiglogo.color", "heiglogo_color"]
+description = "Afficher le logo en couleur (rouge HEIG-VD)."
