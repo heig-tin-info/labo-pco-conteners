@@ -1,6 +1,6 @@
 # Labo Docker
 
-![Hero](hero.png)
+![Tux et Octocat inspectent Docker](hero.png)
 
 Bien que Docker ne soit pas à proprement parler un chapitre de la programmation concurrente, de nombreux problèmes de concurrence sont aujourd'hui résolus en utilisant des **conteneurs** avec des services isolés. Ce travail pratique a pour objectif de comprendre les mécanismes profond de la conteneurisation, qui sont à la base de Docker, et de construire un conteneur à la main pour mieux comprendre ce que Docker fait "sous le capot".
 
@@ -606,10 +606,9 @@ On a créé un conteneur à partir de l'image `ubuntu` (en réalité, on utilise
 
     1. Ouvrez le script `mdocker` et repérez la commande `mount -t overlay`. Quels sont les quatre répertoires utilisés ? Lequel correspond à l'image de base en lecture seule, lequel reçoit les modifications, et lequel est la vue combinée dans laquelle le processus s'exécute ?
     2. Pourquoi `vim` disparaît-il entre deux `mdocker run` ? Tracez le chemin exact : dans quel répertoire `apt install vim` écrit-il ses fichiers, et que fait le script à la sortie du conteneur avec ce répertoire ?
-    3. Lancez `mdocker run ubuntu bash`, puis depuis un autre terminal sur l'hôte exécutez `ls /tmp/mdocker-<PID>/upper/` pendant que le conteneur tourne. Que voyez-vous après avoir installé un paquet ? Que contient ce dossier après la sortie du conteneur ?
-    4. Depuis le conteneur, exécutez `ip a` et `ip route`. Quelle est l'adresse IP du conteneur ? Quelle est la passerelle ? Pouvez-vous pinguer `8.8.8.8` ? Pourquoi le conteneur a-t-il accès à internet alors qu'il est dans un namespace réseau isolé ?
-    5. Regardez dans le script la section cgroups. Quelle valeur est écrite dans `cpu.max` si vous passez `--cpus=0.5` ? Que signifie ce couple de nombres pour le scheduler Linux ?
-    6. Le script utilise `unshare` sans l'option `--user`. Pourquoi faut-il lancer `mdocker` avec `sudo` ?
+    3. Depuis le conteneur, exécutez `ip a` et `ip route`. Quelle est l'adresse IP du conteneur ? Quelle est la passerelle ? Pouvez-vous pinguer `8.8.8.8` ? Pourquoi le conteneur a-t-il accès à internet alors qu'il est dans un namespace réseau isolé ?
+    4. Regardez dans le script la section cgroups. Quelle valeur est écrite dans `cpu.max` si vous passez `--cpus=0.5` ? Que signifie ce couple de nombres pour le scheduler Linux ?
+    5. Le script utilise `unshare` sans l'option `--user`. Pourquoi faut-il lancer `mdocker` avec `sudo` ?
 
 
 ## Machines virtuelles vs Conteneurs
@@ -628,9 +627,9 @@ Un dernier point de comparaison important : les conteneurs ne sont pas des machi
 
 !!! question
 
-   1. Quels sont les avantages et les inconvénients des conteneurs par rapport aux machines virtuelles en termes de performance, d'isolation et de portabilité ?
-   2. Est-il possible de faire tourner un conteneur Windows sur un hôte Linux ? Pourquoi ?
-   3. Docker utilise-t-il des machines virtuelles pour faire tourner les conteneurs ? Pourquoi ou pourquoi pas ?
+    1. Quels sont les avantages et les inconvénients des conteneurs par rapport aux machines virtuelles en termes de performance, d'isolation et de portabilité ?
+    2. Est-il possible de faire tourner un conteneur Windows sur un hôte Linux ? Pourquoi ?
+    3. Docker utilise-t-il des machines virtuelles pour faire tourner les conteneurs ? Pourquoi ou pourquoi pas ?
 
 ## Nettoyage
 

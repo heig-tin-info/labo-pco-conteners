@@ -3,6 +3,12 @@ author: Yves Chevallier
 subtitle: Linux et la conteneurisation
 paragraph:
     indent: false
+    spacing: 1em
+geometry:
+    top: 2cm
+    bottom: 2cm
+    left: 3cm
+    right: 2cm
 callouts:
     style: minimal
 fragments:
